@@ -17,6 +17,32 @@ public class StudyHelper {
                 System.out.println("Exiting");
                 break;
             }
+            //Feature 5
+            if(usernotes.trim().equalsIgnoreCase("review")){
+                try{
+                File fr= new File("FlashCards.txt");
+                  if(!fr.exists()){
+                    System.out.println("No Flashcards Found. Please Create Some First.");
+                  }
+                  Scanner Filereader= new Scanner(fr);
+                  while(Filereader.hasNextLine()){
+                    String line=Filereader.nextLine();
+                    String[] parts=line.split("\\|");
+                    if(parts.length>=2){
+                        String question= parts[0].trim();
+                        String answer=parts[1].trim();
+                        System.out.println("Question:" + "\n"+ question);
+                        System.out.println("Press Enter to see the answer...");
+                        sc.nextLine();
+                        System.out.println("Answer:" + "\n"+ answer);
+                    }
+                  }   Filereader.close();
+
+                  System.out.println("Returning to Note Taking Mode. Enter Your Notes Here:");
+                }catch(IOException e){
+                    System.out.println("Error Reading Flashcards");
+                }
+            }
             if (usernotes.trim().isEmpty()) {
                 continue;
             }
